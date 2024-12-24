@@ -1,0 +1,9 @@
+nicegui
+pyinstaller
+pandas
+openpyxl
+python-dateutil
+whoosh
+langchain==0.3.10
+langchain_openai==0.2.11
+langchain_community==0.3.10
