@@ -171,3 +171,5 @@ cython_debug/
 .pypirc
 db2.db
 .nicegui
+test.py
+site.conf

@@ -26,9 +26,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
 class SetupMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         if not os.path.exists("site.conf"):
-            print("lalala")
             return RedirectResponse('/setup')
-            ui.navigate.to("/setup")
         return await call_next(request)
 
 #5.在应用启动时，初始化数据库（定义数据表，这里用的是sqlite，会自动创建db2.db文件）
