@@ -29,7 +29,8 @@ def setup_page():
                     with ui.step(name="2",title = "2.配置大模型信息",icon="setting"):
                         #ui.label('Mix the ingredients')
                         with ui.column().classes("w-full h-[600px]").classes("justify-start "):
-                            ui.select(options=['月之暗面'],value='月之暗面').bind_value(app.storage.user['site_conf'],"model")
+                            ui.label("输入模型的接口调用地址（支持ollama通用接口）").classes("text-h6")
+                            ui.input("").bind_value(app.storage.user['site_conf'],"model_url")
                             ui.input("APIKey").bind_value(app.storage.user['site_conf'],"model_apikey")
                             
                         with ui.stepper_navigation():

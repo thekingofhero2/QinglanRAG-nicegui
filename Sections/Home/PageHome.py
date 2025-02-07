@@ -27,7 +27,7 @@ class PageHome:
 
     def show(self):
         with frame(self.page_title,left_navs=[],show_drawer=False):
-            llm = ChatOpenAI( model="moonshot-v1-8k", api_key=app.storage.user['site_conf']['model_apikey'],base_url="https://api.moonshot.cn/v1")  # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
+            llm = ChatOpenAI( model="moonshot-v1-8k", api_key=app.storage.user['site_conf']['model_apikey'],base_url=app.storage.user['site_conf']['model_url'])  # 在这里将 MOONSHOT_API_KEY 替换为你从 Kimi 开放平台申请的 API Key
     
 
             async def send() -> None:
@@ -96,5 +96,5 @@ def page_home(db:Session = Depends(get_db),):
             app.storage.user['site_conf'] = json.load(fp)
         page.show()
     else:
-        app.storage.user['site_conf'] = {"site_name":"XXX后台管理系统","model":"月之暗面","model_apikey":""}
+        app.storage.user['site_conf'] = {"site_name":"XXX助手","model_url":"https://api.moonshot.cn/v1","model_apikey":""}
         page.show_setup()
