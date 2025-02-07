@@ -60,11 +60,11 @@ def frame(nav_title :str,left_navs :List[Section] ,show_drawer):
                     ui.separator()
             left_navs_dict.pop("N")
             for expander_name in left_navs_dict.keys():
-                with ui.expansion(expander_name, icon='tune' if item.expander_icon is None else item.expander_icon).classes('w-full text-weight-bold'):
+                with ui.expansion(expander_name, icon='tune' if left_navs_dict[expander_name][0].expander_icon is None else left_navs_dict[expander_name][0].expander_icon).classes('w-full text-weight-bold'):
                     for item in left_navs_dict[expander_name]:
                         if item.section_name is not None:
                             with ui.link(target = item.uri):
-                                ui.button(item.section_name).props("flat").classes("text-blue-grey-10")
+                                ui.button(item.section_name,icon="build" if item.section_icon is None else item.section_icon).props("flat").classes("text-blue-grey-10")
                         else:
                             ui.separator()
         #生成器，

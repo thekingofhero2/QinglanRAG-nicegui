@@ -29,13 +29,15 @@ class LeftNav:
 #实例化网页，指明网页名、地址
 sections = [
     Section("首页","/"),
-    Section("管理后台","/admin"),
+    Section("管理后台","/admin/SideSystemBook"),
        
 ]
 ########################
 
 #######基本配置(不用修改)###########
 ROOT = Path(__file__).parent
+index_dir = ROOT / "FILE_INDEX"
+org_file_dir = ROOT / "FILES"
 app.add_static_files("/assets", ROOT / "assets")
 unrestricted_page_routes = {'/','/login','/register','/setup'}
 

@@ -2,8 +2,29 @@ import re
 from dateutil import parser
 
 def search_rag(cmd):
-    
-    return ""
+    #配置全文检索，通过jieba获取关键词进行查询
+    import jieba.posseg as jp
+    from whoosh.qparser import QueryParser,MultifieldParser
+    from whoosh.query import compound
+    from whoosh.index import open_dir,exists_in
+    from settings import index_dir,org_file_dir
+    l = jp.lcut(cmd)
+    keywords = [i.word for i in filter(lambda x:x.flag=='eng' or x.flag.startswith('n') ,l)]
+    if exists_in(index_dir,indexname="test_idx"):
+        ix = open_dir(index_dir,indexname="test_idx")
+        query = []
+        for keyword in keywords:
+            query.append(MultifieldParser(fieldnames=['title','abstracts'],schema=ix.schema).parse(keyword))
+        print(query)
+        print("--------------------")
+        res = []
+        with ix.searcher() as searcher:
+            results = searcher.search(compound.Or(query))
+            for result in results:
+                res.append(result.get('content'))
+        return "。".join(res)
+    else :
+        return ""
 
 # import chromadb
 # def search_rag(cmd):

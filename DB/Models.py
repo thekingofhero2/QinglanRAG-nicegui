@@ -22,6 +22,18 @@ class Message(Base):
     msg_title = Column(VARCHAR(255),comment="标题")
     msg_content = Column(Text,comment="内容")
     created_at = Column(DateTime, default=datetime.now())
+class Book(Base):
+    __tablename__ = "user_books"
+    __table_args__ = {
+        "comment":"用户发的消息"
+    }
+    id = Column(Integer,primary_key=True,autoincrement=True,comment = "id表示每一本书")
+    user_id = Column(Integer,ForeignKey("user.id"))
+    user = relationship("User",backref="book_of_user")
+    book_title = Column(VARCHAR(255),comment="标题")
+    book_abstracts = Column(Text,comment="摘要")
+    book_content = Column(Text,comment="内容")
+    created_at = Column(DateTime, default=datetime.now())
 
 class Log(Base):
     __tablename__ = "user_log"
