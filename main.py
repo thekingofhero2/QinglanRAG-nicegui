@@ -19,6 +19,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
         if not app.storage.user.get('authenticated', False):
             #4.如果未登录，并且页面需要登录后可见，就重定向到login页面
             if request.url.path in Client.page_routes.values() and request.url.path not in unrestricted_page_routes:
+                
                 app.storage.user['referrer_path'] = request.url.path 
                 return RedirectResponse('/login')
        
