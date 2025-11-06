@@ -32,6 +32,7 @@ def setup_page():
                             ui.label("输入模型的接口调用地址（支持ollama通用接口）").classes("text-h6")
                             ui.input("").bind_value(app.storage.user['site_conf'],"model_url")
                             ui.input("APIKey").bind_value(app.storage.user['site_conf'],"model_apikey")
+                            ui.input("model_name").bind_value(app.storage.user['site_conf'],'model_name')
                             
                         with ui.stepper_navigation():
                             def write_to_file():
